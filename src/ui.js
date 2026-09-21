@@ -39,12 +39,17 @@ function render() {
   const cells = board(state);
   const game = status(state);
   const playable = new Set(legalMoves(state));
+  const winningLine = new Set(game.line ?? []);
+
+  if (game.reason === 'fill') boardElement.dataset.outcome = 'fill';
+  else boardElement.removeAttribute('data-outcome');
 
   for (let cell = 0; cell < 9; cell += 1) {
     const mark = cells[cell];
     const button = cellButtons[cell];
     button.textContent = mark ?? '';
     button.dataset.mark = mark ?? 'empty';
+    button.dataset.highlight = winningLine.has(cell) ? 'true' : 'false';
     button.disabled = !playable.has(cell);
     button.setAttribute(
       'aria-label',
