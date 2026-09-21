@@ -75,3 +75,13 @@ h1 {
 .cell:disabled {
   cursor: default;
 }
+
+.new-game {
+  padding: 0.55rem 1.2rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background: var(--grid);
+  color: var(--cell);
+  font: 600 1rem/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  cursor: pointer;
+}

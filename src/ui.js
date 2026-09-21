@@ -9,6 +9,7 @@ import {
 
 const boardElement = document.getElementById('board');
 const statusElement = document.getElementById('status');
+const newGameButton = document.getElementById('new-game');
 
 const cellButtons = [];
 let state = createGame();
@@ -26,6 +27,13 @@ function onCellClick(cell) {
   state = applyMove(state, cell);
   render();
 }
+
+function onNewGameClick() {
+  state = createGame();
+  render();
+}
+
+newGameButton.addEventListener('click', onNewGameClick);
 
 function render() {
   const cells = board(state);
