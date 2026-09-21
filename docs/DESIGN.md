@@ -190,10 +190,12 @@ restore theoretical Balance: in a no-Draw game it moves the forced win to the se
 
 ## 5. Known broken or unfinished
 
-- **`transcript/README.md` is not written.** The brief asks for a short index of which tools and
-  models were used and which session file corresponds to which phase. The raw session files are
-  committed under `transcript/`, but the index that maps them to phases is still outstanding. This
-  is the one brief deliverable not yet complete.
+- **Transcript indexing was completed last.** The brief asks for a short index of which tools and
+  models were used and which session file corresponds to which phase; it was written after the
+  game, once the session files were stable. Because sub-agent runs are independent opencode sessions
+  that the parent record does not inline, they were exported retroactively into `transcript/` and
+  indexed in [transcript/README.md](../transcript/README.md) alongside the configuration files that
+  shaped the model's behaviour.
 - **No automated verification at the engine seam.** By decision (spec, *Testing Decisions*), no
   test runner is introduced. The no-Draw and termination argument above is informal prose plus the
   research note's exhaustive enumeration, which is a check of the **rule**, not of the JavaScript
@@ -223,3 +225,5 @@ restore theoretical Balance: in a no-Draw game it moves the forced win to the se
   candidates, the comparison table, and the solver.
 - [CONTEXT.md](../CONTEXT.md) — the glossary this document and the code use.
 - [AGENTS.md](../AGENTS.md) — how to run the game and the engine/interface conventions.
+- [transcript/README.md](../transcript/README.md) — which session file maps to which phase, and
+  what the record does not contain.
