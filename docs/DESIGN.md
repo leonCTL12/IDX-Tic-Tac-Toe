@@ -196,13 +196,16 @@ restore theoretical Balance: in a no-Draw game it moves the forced win to the se
   that the parent record does not inline, they were exported retroactively into `transcript/` and
   indexed in [transcript/README.md](../transcript/README.md) alongside the configuration files that
   shaped the model's behaviour.
-- **No automated verification at the engine seam.** By decision (spec, *Testing Decisions*), no
-  test runner is introduced. The no-Draw and termination argument above is informal prose plus the
-  research note's exhaustive enumeration, which is a check of the **rule**, not of the JavaScript
-  engine. The engine is a direct encoding of that rule, but nothing mechanically proves the two
-  stay in step. If rule/engine drift is ever suspected, the fix is the spec's seam test: walk every
-  line of play from `createGame()` via `legalMoves`/`applyMove` and assert every Terminal state has
-  a winner, `legalMoves` is empty at Terminal states, and no line of play exceeds nine moves.
+- **No committed verification at the engine seam.** By decision (spec, *Testing Decisions*), no test
+  runner is introduced, so nothing in the repository re-checks the engine against the rule on later
+  changes. The correctness argument above remains informal prose plus the research note's exhaustive
+  enumeration, and that enumeration checks the **rule**, not the JavaScript engine. As part of
+  verifying this submission, the spec's seam test was run once: a throwaway Node script walked every
+  line of play from `createGame()` via `legalMoves`/`applyMove` and found 255,168 terminal leaves
+  split X 131,184 / O 123,984 / draw **0**, a maximum length of nine moves, `legalMoves` empty at
+  every Terminal state, and no Terminal state without a winner. Those match the rule-level numbers in
+  Section 3 exactly. The script was not committed, so this is evidence as of this writing, not a
+  standing guard; if rule/engine drift is ever suspected, re-run the same seam test.
 - **No computer opponent.** Explicitly optional and unscored by the brief; human vs human only.
 - **Visual polish and accessibility are minimal and consciously unscored.** The Board is rendered
   plainly; a Line win highlights its three cells and a Fill win gets a distinct treatment (ticket
@@ -210,10 +213,10 @@ restore theoretical Balance: in a no-Draw game it moves the forced win to the se
   accessibility pass were not attempted; the live status region and per-cell labels are the extent
   of it and have not been audited.
 - **Time box.** The brief allows a maximum of three hours of *active* work. The only evidence the
-  repository can offer is commit timestamps: at the time of writing, the commits span 13:47 to 15:06
-  on 2026-09-21, about 1 hour 20 minutes of wall-clock, and active work is necessarily a subset of
-  that. On that evidence the box has not been exceeded; a reader who needs an exact active-work
-  figure should treat the commit timestamps and `transcript/` as the record, not this sentence.
+  repository can offer is commit timestamps: the commits span 13:47 to 15:23 on 2026-09-21, about
+  1 hour 36 minutes of wall-clock, and active work is necessarily a subset of that. On that evidence
+  the box has not been exceeded; a reader who needs an exact active-work figure should treat the
+  commit timestamps and `transcript/` as the record, not this sentence.
 - **Issue tracker state is manual.** The tickets under `scratch/no-draw-tic-tac-toe/issues/` are
   marked `ready-for-agent` and are not automatically flipped to done when the work lands.
 

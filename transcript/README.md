@@ -10,7 +10,8 @@ which phase, and what the record does not contain.
   `1.18.29`; the session `info` blocks are the authority on the version that ran.)
 - **Provider:** `opencode-go`.
 - **Model:** `deepseek-v4.1-flash` for every session, main and sub-agent.
-- **Reasoning variant:** `high` for every session except the rule-design session, which is `max`.
+- **Reasoning variant:** `high` for every session except the rule-design phase — its main session and
+  its research sub-agent — which are `max`.
 - **No other AI tool or model was used.** No Cursor, Copilot, Codex or Gemini configuration exists
   in this repo, because none was used.
 - `git`, `python3` and `opencode export` appear in the record only as ordinary tools the agent or
@@ -35,9 +36,11 @@ artefacts that landed.
 | 6 | Ticket 02: New Game control | `implement-new-game-control-for-tic-tac-toe.json` | `ses_f3d3bf974ffeZXh8YKZ7K3fKHY` | 15:00–15:02 | high | `adb6de4`, `0494ea4` |
 | 7 | Ticket 03: visibly distinct endings | `implement-two-distinct-game-endings-per-spec-03.json` | `ses_f3d393618ffes6hLQF2Ndoatb0` | 15:03–15:06 | high | `3b4cce0`, `1134dcf` |
 | 8 | Write `docs/DESIGN.md` | `write-design-md-for-no-draw-tic-tac-toe.json` | `ses_f3d35fd92ffe1LhQfmDCtXP8bt` | 15:06–15:11 | high | `9a40dac`, `9d9f1a9` |
+| 9 | Index transcripts, write this README | `creating-transcript-readme-with-tool-model-session-mapping.json` | `ses_f3d2dc34bffeVJP50Ijjp63fZ4` | 15:12–15:23 | high | `0fb4954`, `258b956` — `transcript/README.md`, `transcript/config/`, `.gitignore` |
 
 Phases 2 and 3 overlap: the config session was run in the gap while the grilling session was open,
-then both were committed together.
+then both were committed together. The phase 9 export was committed in `258b956`, one commit after
+the README it describes.
 
 ## Sub-agent sessions
 
@@ -74,9 +77,11 @@ reaching outside the repo:
 
 ## What is not captured
 
-- **The session that wrote this README.** It is `ses_f3d2dc34bffeVJP50Ijjp63fZ4`, running while
-  these files were added. Its own export would be self-referential and is not committed; the README
-  files and the config/session exports it produced are the record.
+- **The session that wrote this README** (`ses_f3d2dc34bffeVJP50Ijjp63fZ4`) was not exported while it
+  ran; the export was added afterwards, in `258b956`, as
+  `creating-transcript-readme-with-tool-model-session-mapping.json`, and is indexed as phase 9. The
+  write-up and the session that produced it are therefore both in the record now, but nothing about
+  that session was captured live during the write-up itself.
 - **Throwaway verification scripts.** `verify.mjs`, `ui-smoke.mjs` and the `check*.py` probes were
   written to a temp directory (`/var/folders/.../opencode/`) and never committed. The game-tree
   solver is not lost: its source is embedded in the appendix of `docs/research/no-draw-variants.md`
@@ -88,4 +93,5 @@ reaching outside the repo:
 - **No context compaction occurred.** Every session's `time_compacting` is unset in the store and no
   compaction event appears in the exports, so the transcripts are not truncated by the agent. The
   `summary` fields on some messages are git-diff summaries attached to turns, not compaction.
-- **`.DS_Store`** was committed by accident in `007d6aa` and is still tracked.
+- **`.DS_Store`** was committed by accident in `007d6aa` and removed from tracking in `0fb4954`,
+  which added it to `.gitignore`. It is no longer tracked.
