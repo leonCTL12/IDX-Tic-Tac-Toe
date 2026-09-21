@@ -213,8 +213,9 @@ restore theoretical Balance: in a no-Draw game it moves the forced win to the se
   accessibility pass were not attempted; the live status region and per-cell labels are the extent
   of it and have not been audited.
 - **Time box.** The brief allows a maximum of three hours of *active* work. The only evidence the
-  repository can offer is commit timestamps: the commits span 13:47 to 15:23 on 2026-09-21, about
-  1 hour 36 minutes of wall-clock, and active work is necessarily a subset of that. On that evidence
+  repository can offer is commit timestamps: the exercise commits span 13:47 to 15:23 on 2026-09-21
+  (through `258b956`), about 1 hour 36 minutes of wall-clock, and active work is necessarily a subset
+  of that. Later verification-only doc fixes after that stamp are outside this span. On that evidence
   the box has not been exceeded; a reader who needs an exact active-work figure should treat the
   commit timestamps and `transcript/` as the record, not this sentence.
 - **Issue tracker state is manual.** The tickets under `scratch/no-draw-tic-tac-toe/issues/` are
